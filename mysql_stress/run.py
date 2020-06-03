@@ -137,9 +137,12 @@ def main():
     totalTimeList = [ get_stress_list(x, threadsList, connDict) for x in countList ]
 
     ## 平均请求时间汇总
-    div = itertools.cycle(threadsList)
+    ride = itertools.cycle(threadsList)
+    divList = countList*len(threadsList)
+    divList.sort()
+    div = itertools.cycle(divList)
     try:
-        perTimeList = [ list(map(lambda y:round(y/next(div), 4), x)) for x in totalTimeList ] 
+        perTimeList = [ list(map(lambda y:round(y*next(ride)/next(div), 4), x)) for x in totalTimeList ] 
     except TypeError:
         logging.error('获取数据为空{}'.format(totalTimeList))
     else:
