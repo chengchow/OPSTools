@@ -77,9 +77,6 @@ def main(**kwargs):
         sub = kwargs.get('sub')
         text = kwargs.get('context')
         attFile = kwargs.get('xlsFile')
-
-    ## 设置邮件发送地址
-    mailFrom = conf.get('mail', 'from_mail') or mailTo
     
     ## SMTP相关配置
     smtpHost = conf.get('smtp', 'smtp_host')
@@ -87,6 +84,9 @@ def main(**kwargs):
     smtpPass = conf.get('smtp', 'smtp_pass')
     smtpPort = conf.get('smtp', 'smtp_port')
     
+    ## 设置邮件发送地址
+    mailFrom = conf.get('mail', 'from_mail') or smtpUser
+
     ## 定义SMTP类型
     smtpType = conf.get('smtp', 'smtp_type')
 
